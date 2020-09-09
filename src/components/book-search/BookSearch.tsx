@@ -1,11 +1,16 @@
 import React, { useEffect, useState, useCallback } from "react";
 import { getBooksByType } from "../../services/book-search/book-search";
 import { Books } from "../../services/book-search/types";
+import { useDebounce } from "../../utils/hooks";
+import { BookSearchInput } from "./components/book-search-input/BookSearchInput";
+import { BookSearchList } from "./components/book-search-list/BookSearchList";
+import styles from './BookSearch.module.scss'
 
 const BookSearch = () => {
-  const [bookType, updateBookType] = useState("");
-  const [bookTypeToSearch, updateBookTypeToSearch] = useState("");
+  const [searchQuery, setSearchQuery] = useState("")
   const [allAvailableBooks, setAllAvailableBooks] = useState(null as Books | null);
+
+  const debouncedSearchQuery = useDebounce(searchQuery, 500)
     
   const requestBooks = useCallback(async (query: string) => {
     if (query) {
@@ -16,50 +21,30 @@ const BookSearch = () => {
 
   useEffect(() => {
     async function getAllBooks() {
-      await requestBooks(bookTypeToSearch);
+      await requestBooks(debouncedSearchQuery);
     }
     getAllBooks();
-  }, [bookTypeToSearch, requestBooks]);
+  }, [debouncedSearchQuery, requestBooks]);
     
   return (
     <>
-      <div className="book--container">
-        <div className="search-params">
-          <div>
-            <form
-              onSubmit={(e) => {
-                e.preventDefault();
-                updateBookTypeToSearch(bookType)
-              }}
-            >
-              <input
-                className="full-width"
-                autoFocus
-                name="gsearch"
-                type="search"
-                value={bookType}
-                placeholder="Search for books to add to your reading list and press Enter"
-                onChange={e => updateBookType(e.target.value)}
-              />
-            </form>
-            {!bookType && (
-              <div className="empty">
-                <p>
-                  Try searching for a topic, for example
-                  <span onClick={() => {
-                    updateBookType("Javascript");
-                  }}>
-                    {" "}
-                    "Javascript"
-                  </span>
-                </p>
-              </div>
-            )}
+      <div className={styles.container}>
+        <BookSearchInput value={searchQuery} onChange={setSearchQuery} />
 
+        {allAvailableBooks !== null && <BookSearchList items={allAvailableBooks.items} />}
+
+        {allAvailableBooks === null && (
+          <div className="empty">
+            <p>
+              Try searching for a topic, for example
+              {" "}
+              <span onClick={() => setSearchQuery("Javascript")}>
+                "Javascript"
+              </span>
+            </p>
           </div>
-        </div>
+        )}
       </div>
-      {<pre>{JSON.stringify(allAvailableBooks, null, 4)}</pre>}
     </>
   );
 };

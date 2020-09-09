@@ -1,0 +1,45 @@
+@import "../../../../styles/variables.scss";
+
+.container {
+  display: flex;
+  margin: $spacing-xs;
+
+  .cover {
+    width: 8rem;
+    height: 8rem;
+    flex-grow: 0;
+    flex-shrink: 0;
+    text-align: center;
+
+    img {
+      max-width: 100%;
+      max-height: 100%;
+    }
+  }
+
+  .info {
+    display: flex;
+    flex-direction: column;
+    padding: 0 $spacing-xxs;
+
+    .title {
+      font-size: 110%;
+    }
+
+    .description {
+      flex: 1;
+      color: $gray80;
+    }
+
+    .details {
+      color: $gray60;
+      display: flex;
+      align-items: center;
+      margin: $spacing-3xs 0;
+
+      .authors {
+        margin-right: $spacing-3xs;
+      }
+    }
+  }
+}

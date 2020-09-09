@@ -1,0 +1,11 @@
+@import "../../../../styles/variables.scss";
+
+.container {
+  padding-bottom: $spacing-sm;
+}
+
+.input {
+  width: 100%;
+  flex-grow: 0;
+  flex-shrink: 0;
+}
