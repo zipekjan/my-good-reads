@@ -6,9 +6,10 @@
  * @param url
  * @param config
  */
-const fetchUrl = (url: string, config = {}): Promise<any> =>
-    fetch(url, config).then(async response => {
-        const data = await response.json();
-        return response.ok ? data : Promise.reject(data);
-    });
+const fetchUrl = <T = any>(url: string, config = {} as RequestInit): Promise<T> =>
+  fetch(url, config).then(async response => {
+    const data = await response.json();
+    return response.ok ? data : Promise.reject(data);
+  });
+
 export default fetchUrl;
