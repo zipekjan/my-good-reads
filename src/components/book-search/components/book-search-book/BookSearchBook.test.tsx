@@ -1,23 +1,8 @@
-import React from 'react';
-import { render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { BookSearchBook } from './BookSearchBook';
+import React from 'react';
 import { Book } from '../../../../services/book-search/types';
-import { WishListContext, WishListContextType } from '../../../../contexts/wish-list-context';
-
-const renderWithContext = (component: React.ReactNode, ctx: Partial<WishListContextType> = {}) => {
-  const context = {
-    list: [],
-    addBook: () => null,
-    hasBook: () => false,
-    removeBook: () => null,    
-    ...ctx,
-  };
-
-  return render(
-    <WishListContext.Provider value={context}>{component}</WishListContext.Provider>
-  );
-};
+import { renderWithWishList } from '../../../../tests/renderWithWishList';
+import { BookSearchBook } from './BookSearchBook';
 
 test('renders all info when present', () => {
   const testBook: Book = {
@@ -38,7 +23,7 @@ test('renders all info when present', () => {
     }
   };
 
-  const { getByText } = renderWithContext(<BookSearchBook item={testBook} maxDescriptionLength={1000} />);
+  const { getByText } = renderWithWishList(<BookSearchBook item={testBook} maxDescriptionLength={1000} />);
   
   expect(getByText(/Book title/i)).toBeInTheDocument();
   expect(getByText(/Book description/i)).toBeInTheDocument();
@@ -60,7 +45,7 @@ test('renders partial info', () => {
     }
   };
 
-  const { getByText } = renderWithContext(<BookSearchBook item={testBook} maxDescriptionLength={1000} />);
+  const { getByText } = renderWithWishList(<BookSearchBook item={testBook} maxDescriptionLength={1000} />);
   
   expect(getByText(/Book title/i)).toBeInTheDocument();
   expect(getByText(/Add to my Wishlist/i)).toBeInTheDocument();
@@ -77,7 +62,7 @@ test('disables button when already on wishlist', () => {
     }
   };
 
-  const { getByText, queryByText } = renderWithContext(
+  const { getByText, queryByText } = renderWithWishList(
     <BookSearchBook item={testBook} maxDescriptionLength={1000} />,
     {
       hasBook: (book) => book.id === testBook.id
@@ -102,7 +87,7 @@ test('adds book to wishlist when clicked', () => {
 
   const addBook = jest.fn();
 
-  const { getByText } = renderWithContext(
+  const { getByText } = renderWithWishList(
     <BookSearchBook item={testBook} maxDescriptionLength={1000} />,
     { addBook }
   );

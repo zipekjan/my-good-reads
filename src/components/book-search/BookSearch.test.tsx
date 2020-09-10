@@ -1,16 +1,12 @@
-import React from 'react';
-import { render } from '@testing-library/react';
 import { waitFor } from '@testing-library/dom';
 import userEvent from '@testing-library/user-event';
-import BookSearch from './BookSearch';
-import { WishListProvider } from '../../contexts/wish-list-context';
+import React from 'react';
 import { Books } from '../../services/book-search/types';
-
-const renderWithContext = (component: React.ReactNode) =>
-  render(<WishListProvider>{component}</WishListProvider>);
+import { renderWithWishList } from '../../tests/renderWithWishList';
+import BookSearch from './BookSearch';
 
 test('properly renders with empty element', () => {
-  const { getByText } = renderWithContext(<BookSearch />);
+  const { getByText } = renderWithWishList(<BookSearch />);
 
   expect(
     getByText(/Try searching for a topic, for example/i)
@@ -52,7 +48,7 @@ test('properly reacts to user input', async () => {
   // Inject mock fetch into global
   global.fetch = mockFetch;
 
-  const { getByPlaceholderText, getByText } = renderWithContext(<BookSearch />);
+  const { getByPlaceholderText, getByText } = renderWithWishList(<BookSearch />);
 
   // Find input
   const input = getByPlaceholderText(

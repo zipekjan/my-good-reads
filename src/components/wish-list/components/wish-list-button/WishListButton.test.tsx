@@ -1,27 +1,11 @@
-import { render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import React from 'react';
-import { WishListButton } from './WishListButton';
-import { WishListContextType, WishListContext } from '../../../../contexts/wish-list-context';
 import { Book } from '../../../../services/book-search/types';
-
-
-const renderWithContext = (component: React.ReactNode, ctx: Partial<WishListContextType> = {}) => {
-  const context = {
-    list: [],
-    addBook: () => null,
-    hasBook: () => false,
-    removeBook: () => null,    
-    ...ctx,
-  };
-
-  return render(
-    <WishListContext.Provider value={context}>{component}</WishListContext.Provider>
-  );
-};
+import { renderWithWishList } from '../../../../tests/renderWithWishList';
+import { WishListButton } from './WishListButton';
 
 test('renders the button with proper book count', () => {
-  const { getByText } = renderWithContext(
+  const { getByText } = renderWithWishList(
     <WishListButton opened={false} onOpen={jest.fn()} />,
     { list: [{} as Book, {} as Book] }
   );
@@ -33,7 +17,7 @@ test('renders the button with proper book count', () => {
 test('reacts to user clicks', () => {
   const onOpen = jest.fn();
 
-  const { getByText } = renderWithContext(
+  const { getByText } = renderWithWishList(
     <WishListButton opened={false} onOpen={onOpen} />
   );
 

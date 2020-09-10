@@ -1,30 +1,7 @@
-import { render } from '@testing-library/react';
 import React from 'react';
-import { WishListBooks } from './WishListBooks';
-import {
-  WishListContextType,
-  WishListContext,
-} from '../../../../contexts/wish-list-context';
 import { Book } from '../../../../services/book-search/types';
-
-const renderWithContext = (
-  component: React.ReactNode,
-  ctx: Partial<WishListContextType> = {}
-) => {
-  const context = {
-    list: [],
-    addBook: () => null,
-    hasBook: () => false,
-    removeBook: () => null,
-    ...ctx,
-  };
-
-  return render(
-    <WishListContext.Provider value={context}>
-      {component}
-    </WishListContext.Provider>
-  );
-};
+import { renderWithWishList } from '../../../../tests/renderWithWishList';
+import { WishListBooks } from './WishListBooks';
 
 test('renders list of wishlisted books', () => {
   const testBook: Book = {
@@ -37,7 +14,7 @@ test('renders list of wishlisted books', () => {
     },
   };
 
-  const { getByText } = renderWithContext(
+  const { getByText } = renderWithWishList(
     <WishListBooks opened={true} onClose={jest.fn()} />,
     {
       list: [
@@ -63,7 +40,7 @@ test('doesn\'t render when closed', () => {
     },
   };
 
-  const { queryByText } = renderWithContext(
+  const { queryByText } = renderWithWishList(
     <WishListBooks opened={false} onClose={jest.fn()} />,
     {
       list: [
