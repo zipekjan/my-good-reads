@@ -10,7 +10,7 @@
 .header {
   background-color: $blue-accent;
   color: $white;
-  padding: $spacing-3xs $spacing-xs;
+  padding: $spacing-xs $spacing-med;
   box-shadow: $shadow;
   width: 100%;
 
@@ -19,7 +19,6 @@
 
   .content {
     display: flex;
-    height: 10vh;
     align-items: center;
     margin: 0 auto;
   }
