@@ -5,7 +5,7 @@
   "dependencies": {
     "@reach/router": "^1.3.4",
     "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.3.2",
+    "@testing-library/react": "^11.0.2",
     "@testing-library/user-event": "^7.1.2",
     "@types/chai": "^4.2.12",
     "@types/chai-as-promised": "^7.1.3",
@@ -47,7 +47,10 @@
       ],
       "semi": "warn",
       "eol-last": "warn",
-      "quotes": ["warn", "single"]
+      "quotes": [
+        "warn",
+        "single"
+      ]
     }
   },
   "browserslist": {
