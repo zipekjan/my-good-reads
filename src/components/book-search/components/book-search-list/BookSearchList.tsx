@@ -9,6 +9,8 @@ type Props = {
 
 export const BookSearchList = ({ items }: Props) => (
   <div className={styles.container}>
-    {items.map(item => <BookSearchBook key={item.id} item={item} />)}
+    {items.map(item => (
+      <BookSearchBook key={item.id} item={item} />
+    ))}
   </div>
 );

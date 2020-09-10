@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './Loader.module.scss';
 
 type Props = {
-  active: boolean
+	active: boolean
 }
 
 export const Loader = ({ active }: Props) => {
@@ -10,5 +10,7 @@ export const Loader = ({ active }: Props) => {
     <div className={styles.container}>
       <div className={styles.loader}></div>
     </div>
-  ) : <></>;
+  ) : (
+    <></>
+  );
 };

@@ -31,17 +31,17 @@ test('properly reacts to user input', async () => {
           authors: ['Author 1', 'Author 2'],
           imageLinks: {
             smallThumbnail: 'small-thumb',
-            thumbnail: 'big-thumb',
-          },
-        },
-      },
-    ],
+            thumbnail: 'big-thumb'
+          }
+        }
+      }
+    ]
   };
 
   const mockFetch = jest.fn(() =>
     Promise.resolve({
       ok: true,
-      json: () => res,
+      json: () => res
     })
   );
 
@@ -61,12 +61,13 @@ test('properly reacts to user input', async () => {
 
   // Wait until component performs the search
   await waitFor(() => expect(mockFetch).toBeCalledTimes(1));
-  expect(
-    mockFetch
-  ).toBeCalledWith('https://www.googleapis.com/books/v1/volumes?q=JavaScript', {
-    headers: { 'content-type': 'application/json' },
-    method: 'GET',
-  });
+  expect(mockFetch).toBeCalledWith(
+    'https://www.googleapis.com/books/v1/volumes?q=JavaScript',
+    {
+      headers: { 'content-type': 'application/json' },
+      method: 'GET'
+    }
+  );
 
   // Test if there's book in the list
   await waitFor(() => expect(getByText(/Book title/i)).toBeInTheDocument());

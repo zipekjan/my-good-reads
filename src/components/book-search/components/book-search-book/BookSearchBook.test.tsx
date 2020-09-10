@@ -23,8 +23,10 @@ test('renders all info when present', () => {
     }
   };
 
-  const { getByText } = renderWithWishList(<BookSearchBook item={testBook} maxDescriptionLength={1000} />);
-  
+  const { getByText } = renderWithWishList(
+    <BookSearchBook item={testBook} maxDescriptionLength={1000} />
+  );
+
   expect(getByText(/Book title/i)).toBeInTheDocument();
   expect(getByText(/Book description/i)).toBeInTheDocument();
   expect(getByText(/Test publisher/i)).toBeInTheDocument();
@@ -45,8 +47,10 @@ test('renders partial info', () => {
     }
   };
 
-  const { getByText } = renderWithWishList(<BookSearchBook item={testBook} maxDescriptionLength={1000} />);
-  
+  const { getByText } = renderWithWishList(
+    <BookSearchBook item={testBook} maxDescriptionLength={1000} />
+  );
+
   expect(getByText(/Book title/i)).toBeInTheDocument();
   expect(getByText(/Add to my Wishlist/i)).toBeInTheDocument();
 });
@@ -65,14 +69,13 @@ test('disables button when already on wishlist', () => {
   const { getByText, queryByText } = renderWithWishList(
     <BookSearchBook item={testBook} maxDescriptionLength={1000} />,
     {
-      hasBook: (book) => book.id === testBook.id
+      hasBook: book => book.id === testBook.id
     }
   );
 
   expect(queryByText(/Add to my Wishlist/i)).not.toBeInTheDocument();
   expect(getByText(/In your Wishlist/i)).toBeInTheDocument();
 });
-
 
 test('adds book to wishlist when clicked', () => {
   const testBook: Book = {
@@ -91,7 +94,7 @@ test('adds book to wishlist when clicked', () => {
     <BookSearchBook item={testBook} maxDescriptionLength={1000} />,
     { addBook }
   );
-  
+
   const button = getByText(/Add to my Wishlist/i);
   expect(button).toBeInTheDocument();
 

@@ -10,8 +10,8 @@ test('renders list of wishlisted books', () => {
     etag: 'test-tag',
     selfLink: 'test-link',
     volumeInfo: {
-      title: 'Book title',
-    },
+      title: 'Book title'
+    }
   };
 
   const { getByText } = renderWithWishList(
@@ -19,8 +19,8 @@ test('renders list of wishlisted books', () => {
     {
       list: [
         testBook,
-        { ...testBook, id: 'test-id-2', volumeInfo: { title: 'Test title' } },
-      ],
+        { ...testBook, id: 'test-id-2', volumeInfo: { title: 'Test title' } }
+      ]
     }
   );
 
@@ -36,8 +36,8 @@ test('doesn\'t render when closed', () => {
     etag: 'test-tag',
     selfLink: 'test-link',
     volumeInfo: {
-      title: 'Book title',
-    },
+      title: 'Book title'
+    }
   };
 
   const { queryByText } = renderWithWishList(
@@ -45,8 +45,8 @@ test('doesn\'t render when closed', () => {
     {
       list: [
         testBook,
-        { ...testBook, id: 'test-id-2', volumeInfo: { title: 'Test title' } },
-      ],
+        { ...testBook, id: 'test-id-2', volumeInfo: { title: 'Test title' } }
+      ]
     }
   );
 

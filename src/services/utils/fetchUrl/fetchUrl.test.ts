@@ -7,14 +7,14 @@ describe('Testing FetchUrl - Wrapper over fetch', () => {
   const res = [
     {
       id: '1',
-      name: 'Abc',
-    },
+      name: 'Abc'
+    }
   ];
 
   it('should perform basic fetch functions', () => {
     const mockFetch = sinon.fake.resolves({
       ok: true,
-      json: () => res,
+      json: () => res
     });
 
     // Inject mock fetch into global
@@ -31,7 +31,7 @@ describe('Testing FetchUrl - Wrapper over fetch', () => {
   it('should resolve with data for valid request', () => {
     const mockFetch = sinon.fake.resolves({
       ok: true,
-      json: () => res,
+      json: () => res
     });
 
     // Inject mock fetch into global
@@ -47,7 +47,7 @@ describe('Testing FetchUrl - Wrapper over fetch', () => {
   it('should reject with data for fetch status returns ok false', () => {
     const mockFetch = sinon.fake.resolves({
       ok: false,
-      json: () => res,
+      json: () => res
     });
 
     // Inject mock fetch into global

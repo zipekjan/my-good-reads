@@ -1,5 +1,8 @@
 import React from 'react';
-import { WishListContextType, WishListContext } from '../contexts/wish-list-context';
+import {
+  WishListContextType,
+  WishListContext
+} from '../contexts/wish-list-context';
 import { render } from '@testing-library/react';
 
 export const renderWithWishList = (
@@ -11,7 +14,7 @@ export const renderWithWishList = (
     addBook: () => null,
     hasBook: () => false,
     removeBook: () => null,
-    ...ctx,
+    ...ctx
   };
 
   return render(

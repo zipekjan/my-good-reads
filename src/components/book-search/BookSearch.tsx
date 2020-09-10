@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useCallback, useRef } from 'react';
-import { getBooksByType } from '../../services/book-search/book-search';
+import { findBooks } from '../../services/book-search/book-search';
 import { Book } from '../../services/book-search/types';
 import { useDebounce } from '../../utils/hooks';
 import { BookSearchInput } from './components/book-search-input/BookSearchInput';
@@ -22,7 +22,7 @@ const BookSearch = () => {
     if (query) {
       // Save current request ID
       const request = ++lastRequest.current;
-      const allBooks = await getBooksByType(query);
+      const allBooks = await findBooks(query);
       
       // Only save results if we're the most recent request
       if (request === lastRequest.current) {
