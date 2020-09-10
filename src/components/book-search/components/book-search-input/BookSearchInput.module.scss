@@ -8,4 +8,18 @@
   width: 100%;
   flex-grow: 0;
   flex-shrink: 0;
+  border: none;
+  border-bottom: 0.1rem solid $gray40;
+  padding: $spacing-xxs;
+  transition: all 0.2s;
+  box-sizing: border-box;
+  margin-bottom: 0.05rem;
+  font-size: 100%;
+
+  &:focus {
+    outline: none;
+    border-color: $blue-dark;
+    border-width: 0.15rem;
+    margin-bottom: 0;
+  }
 }

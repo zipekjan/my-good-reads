@@ -36,11 +36,16 @@ const BookSearch = () => {
   }, [setFoundBooks]);
 
   useEffect(() => {
-    if (searchQuery) {
-      setLoading(true);
+    if (searchQuery === debouncedSearchQuery) {
+      setLoading(false);
     } else {
-      setFoundBooks(null);
+      if (searchQuery) {
+        setLoading(true);
+      } else {
+        setFoundBooks(null);
+      }
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchQuery]);
 
   useEffect(() => {
@@ -49,7 +54,7 @@ const BookSearch = () => {
     }
     getAllBooks();
   }, [debouncedSearchQuery, requestBooks]);
-    
+
   return (
     <>
       <div className={styles.container}>
@@ -60,7 +65,7 @@ const BookSearch = () => {
 
           {foundBooks !== null && <BookSearchList items={foundBooks} />}
 
-          {foundBooks?.length === 0 && (
+          {!loading && foundBooks?.length === 0 && (
             <div className={styles.empty}>
               <p>
                 Nothing found, try searching for different topic
@@ -68,7 +73,7 @@ const BookSearch = () => {
             </div>
           )}
 
-          {foundBooks === null && (
+          {!loading && foundBooks === null && (
             <div className={styles.empty}>
               <p>
                 Try searching for a topic, for example
