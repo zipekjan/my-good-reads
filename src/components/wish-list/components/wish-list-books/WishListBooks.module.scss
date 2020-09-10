@@ -9,6 +9,7 @@
   left: 0;
   background: rgba(255,255, 255, 0.8);
   z-index: 2;
+  animation: fade-in 200ms;
 
   .content {
     position: fixed;
@@ -68,5 +69,15 @@
 
   100% {
     transform: translate(0, 0);
+  }
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
   }
 }
