@@ -15,7 +15,9 @@ function App() {
           </div>
         </header>
         <main className={styles.main}>
-          <BookSearch />
+          <div className={styles.content}>
+            <BookSearch />
+          </div>
         </main>
       </div>
     </WishListProvider>
