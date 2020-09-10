@@ -1,7 +1,7 @@
 import React, { createContext, useState, useContext, useMemo } from 'react';
 import { Book } from '../services/book-search/types';
 
-export type WishListContext = {
+export type WishListContextType = {
   /** List wishlisted books */
   list: Book[],
   /** Checks if the book is on wishlist */
@@ -16,7 +16,7 @@ type Props = {
 	children: React.ReactNode
 }
 
-export const WishListContext = createContext<WishListContext | null>(null);
+export const WishListContext = createContext<WishListContextType | null>(null);
 
 /**
  * Provides WishList context with all its features
@@ -41,7 +41,7 @@ export const WishListProvider = ({ children }: Props) => {
       list.find(item => item.id === book.id) !== undefined;
 
 
-    const ctx: WishListContext = {
+    const ctx: WishListContextType = {
       list,
       addBook,
       removeBook,
