@@ -15,7 +15,7 @@ export const WishListBook = ({ item }: Props) => {
       <div className={styles.name} title={item.volumeInfo.title}>
         {item.volumeInfo.title}
       </div>
-      <button className={styles.remove} onClick={() => removeBook(item)}>
+      <button className={styles.remove} onClick={() => removeBook(item)} title="Remove book from Wishlist">
         &times;
       </button>
     </div>
