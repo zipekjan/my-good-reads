@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useCallback, useRef } from "react";
 import { getBooksByType } from "../../services/book-search/book-search";
-import { Books } from "../../services/book-search/types";
+import { Book } from "../../services/book-search/types";
 import { useDebounce } from "../../utils/hooks";
 import { BookSearchInput } from "./components/book-search-input/BookSearchInput";
 import { BookSearchList } from "./components/book-search-list/BookSearchList";
@@ -10,7 +10,7 @@ import { Loader } from "../loader/Loader";
 const BookSearch = () => {
   const [loading, setLoading] = useState(false)
   const [searchQuery, setSearchQuery] = useState("")
-  const [foundBooks, setFoundBooks] = useState(null as Books | null);
+  const [foundBooks, setFoundBooks] = useState(null as Book[] | null);
   
   // Keep track of last request id to prevent multiple requests overlapping
   const lastRequest = useRef<number>(0)
@@ -26,7 +26,10 @@ const BookSearch = () => {
       
       // Only save results if we're the most recent request
       if (request === lastRequest.current) {
-        setFoundBooks(allBooks);
+        if (allBooks) {
+          setFoundBooks(allBooks.items ?? []);
+        }
+
         setLoading(false);
       }
     }
@@ -35,6 +38,8 @@ const BookSearch = () => {
   useEffect(() => {
     if (searchQuery) {
       setLoading(true);
+    } else {
+      setFoundBooks(null);
     }
   }, [searchQuery])
 
@@ -53,7 +58,15 @@ const BookSearch = () => {
         <div className={styles.list}>
           <Loader active={loading} />
 
-          {foundBooks !== null && <BookSearchList items={foundBooks.items} />}
+          {foundBooks !== null && <BookSearchList items={foundBooks} />}
+
+          {foundBooks?.length === 0 && (
+            <div className={styles.empty}>
+              <p>
+                Nothing found, try searching for different topic
+              </p>
+            </div>
+          )}
 
           {foundBooks === null && (
             <div className={styles.empty}>

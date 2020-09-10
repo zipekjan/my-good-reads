@@ -28,7 +28,7 @@ export type Book = {
       containsEpubBubbles: boolean;
       containsImageBubbles: boolean;
     };
-    imageLinks: {
+    imageLinks?: {
       smallThumbnail: string;
       thumbnail: string;
     };
@@ -68,5 +68,5 @@ export type Book = {
 export type Books = {
   kind: "books#volumes";
   totalItems: number;
-  items: Book[];
+  items?: Book[];
 };

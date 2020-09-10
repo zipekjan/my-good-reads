@@ -29,7 +29,7 @@ export const BookSearchBook = ({ item, maxDescriptionLength = 150 }: Props) => {
 
   return <div className={styles.container}>
     <div className={styles.cover}>
-      <img src={info.imageLinks.thumbnail} alt="Book cover" />
+      {info.imageLinks && <img src={info.imageLinks.thumbnail} alt="Book cover" />}
     </div>
     <div className={styles.info}>
       <div className={styles.title} title={info.title}>
