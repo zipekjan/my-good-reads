@@ -8,9 +8,7 @@ type Props = {
 export const Loader = ({ active }: Props) => {
   return active ? (
     <div className={styles.container}>
-      <div className={styles.loader}>
-        <span role="img" aria-label="Loading">📘</span>
-      </div>
+      <div className={styles.loader}></div>
     </div>
   ) : <></>;
 }
