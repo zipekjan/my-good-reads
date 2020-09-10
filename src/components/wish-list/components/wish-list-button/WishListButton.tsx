@@ -1,6 +1,6 @@
-import React from 'react'
-import styles from './WishListButton.module.scss'
-import { useWishList } from '../../../../contexts/wish-list-context'
+import React from 'react';
+import styles from './WishListButton.module.scss';
+import { useWishList } from '../../../../contexts/wish-list-context';
 
 type Props = {
   opened: boolean
@@ -8,7 +8,7 @@ type Props = {
 }
 
 export const WishListButton = ({ opened, onOpen }: Props) => {
-  const { list } = useWishList()
+  const { list } = useWishList();
 
-  return <button className={styles.button} onClick={onOpen}>Wishlist ({list.length})</button>
-}
+  return <button className={styles.button} onClick={onOpen}>Wishlist ({list.length})</button>;
+};

@@ -1,7 +1,7 @@
-import React from 'react'
-import { useWishList } from '../../../../contexts/wish-list-context'
-import { WishListBook } from './components/wish-list-book/WishListBook'
-import styles from './WishListBooks.module.scss'
+import React from 'react';
+import { useWishList } from '../../../../contexts/wish-list-context';
+import { WishListBook } from './components/wish-list-book/WishListBook';
+import styles from './WishListBooks.module.scss';
 
 type Props = {
   opened: boolean
@@ -9,7 +9,7 @@ type Props = {
 }
 
 export const WishListBooks = ({ opened, onClose }: Props) => {
-  const { list } = useWishList()
+  const { list } = useWishList();
 
   return opened ? (
     <div className={styles.container} onClick={onClose}>
@@ -23,5 +23,5 @@ export const WishListBooks = ({ opened, onClose }: Props) => {
         </div>
       </div>
     </div>
-  ) : <></>
-}
+  ) : <></>;
+};

@@ -1,5 +1,5 @@
-import React from 'react'
-import styles from './Loader.module.scss'
+import React from 'react';
+import styles from './Loader.module.scss';
 
 type Props = {
   active: boolean
@@ -11,4 +11,4 @@ export const Loader = ({ active }: Props) => {
       <div className={styles.loader}></div>
     </div>
   ) : <></>;
-}
+};

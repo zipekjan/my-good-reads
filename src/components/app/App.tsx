@@ -1,8 +1,8 @@
 import React from 'react';
 import BookSearch from '../book-search/BookSearch';
 import WishList from '../wish-list/WishList';
-import { WishListProvider } from '../../contexts/wish-list-context'
-import styles from './App.module.scss'
+import { WishListProvider } from '../../contexts/wish-list-context';
+import styles from './App.module.scss';
 
 function App() {
   return (
