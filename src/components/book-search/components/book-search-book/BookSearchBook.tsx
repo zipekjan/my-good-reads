@@ -38,19 +38,20 @@ export const BookSearchBook = ({ item, maxDescriptionLength = 150 }: Props) => {
       <div className={styles.details}>
         {info.authors && hasAuthors && (
           <div className={styles.authors}>
-            {`Written by ${info.authors.join(', ')}`}
+            {"Written by "}
+            <span className={styles.highlight}>{info.authors.join(', ')}</span>
           </div>
         )}
         {info.publisher && (
           <div className={styles.publisher}>
             {hasAuthors ? "and published by " : "Published by "}
-            {info.publisher}
+            <span className={styles.highlight}>{info.publisher}</span>
             {" in "}
-            {info.publishedDate}
+            <span className={styles.highlight}>{info.publishedDate}</span>
           </div>
         )}
       </div>
-      <div className={styles.description}>
+      <div className={styles.description} title={info.description}>
         {desc}
       </div>
       <div className={styles.wishlist}>

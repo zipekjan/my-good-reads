@@ -1,5 +1,4 @@
 import React from 'react';
-import '../../styles/App.scss';
 import BookSearch from '../book-search/BookSearch';
 import WishList from '../wish-list/WishList';
 import { WishListProvider } from '../../contexts/wish-list-context'

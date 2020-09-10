@@ -11,13 +11,17 @@ type Props = {
 export const WishListBooks = ({ opened, onClose }: Props) => {
   const { list } = useWishList()
 
-  return opened ? <div className={styles.container}>
-    <div className={styles.title}>
-      <h2>Your Wishlist</h2>
-      <button className={styles.close} onClick={onClose}>&times;</button>
+  return opened ? (
+    <div className={styles.container} onClick={onClose}>
+      <div className={styles.content} onClick={e => e.stopPropagation()}>
+        <div className={styles.title}>
+          <h2>Your Wishlist</h2>
+          <button className={styles.close} onClick={onClose}>&times;</button>
+        </div>
+        <div className={styles.list}>
+          {list.map(i => <WishListBook item={i} key={i.id} />)}
+        </div>
+      </div>
     </div>
-    <div className={styles.list}>
-      {list.map(i => <WishListBook item={i} key={i.id} />)}
-    </div>
-  </div> : <></>
+  ) : <></>
 }

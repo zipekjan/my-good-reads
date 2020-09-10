@@ -1,0 +1,28 @@
+@import "../../styles/global.scss";
+
+.container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  min-width: 5rem;
+  min-height: 5rem;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  z-index: 1;
+  background: rgba(255, 255, 255, 0.8);
+  animation: show 50ms;
+
+  .loader {
+    margin: 2rem auto 0 auto;
+    font-size: 200%;
+    animation: spin 1000ms linear infinite;
+  }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
