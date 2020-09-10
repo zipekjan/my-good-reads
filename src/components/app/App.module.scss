@@ -8,6 +8,8 @@
 }
 
 .header {
+  position: relative;
+  z-index: 1;
   background-color: $blue-accent;
   color: $white;
   padding: $spacing-xs $spacing-med;
