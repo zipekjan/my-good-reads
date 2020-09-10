@@ -1,0 +1,59 @@
+@import '../../../../styles/variables.scss';
+
+.container {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  max-width: 100vw;
+  width: 25rem;
+  background: $white;
+  box-shadow: $shadow;
+  color: $black;
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+  max-height: 100%;
+  animation: slide-in 200ms;
+  
+  .title {
+    padding: $spacing-sm $spacing-med;
+    background: $blue-dark;
+    color: $white;
+    flex-grow: 0;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    box-shadow: $shadow;
+
+    h2 {
+      margin: 0;
+      padding: 0;
+    }
+
+    .close {
+      margin-left: auto;
+      font-size: 200%;
+      background: none;
+      border: none;
+      color: $white;
+      padding: 0; 
+    }
+  }
+
+  .list {
+    padding: $spacing-xs;
+    flex: 1;
+    overflow: auto;
+  }
+}
+
+@keyframes slide-in {
+  0% {
+    transform: translate(100%, 0);
+  }
+
+  100% {
+    transform: translate(0, 0);
+  }
+}

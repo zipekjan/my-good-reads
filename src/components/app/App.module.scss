@@ -5,34 +5,29 @@
   height: 100%;
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 
 .header {
   background-color: $blue-accent;
   color: $white;
   padding: $spacing-3xs $spacing-xs;
+  box-shadow: $shadow;
+  width: 100%;
 
   flex-grow: 0;
   flex-shrink: 0;
 
-  button {
-    padding: 0 $spacing-xs;
-  }
-
   .content {
     display: flex;
     height: 10vh;
-    > * {
-      display: flex;
-      align-items: center;
-    }
+    align-items: center;
+    margin: 0 auto;
   }
 }
 
 .main {
-  padding: $spacing-xs $spacing-xxs;
   min-width: 300px;
-  max-width: 100vw;
+  max-width: 1000px;
   flex: 1;
-  overflow: auto;
 }

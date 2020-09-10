@@ -12,11 +12,11 @@ function App() {
         <header className={styles.header}>
           <div className={styles.content}>
             <h1>My Good Reads</h1>
+            <WishList />
           </div>
         </header>
         <main className={styles.main}>
           <BookSearch />
-          <WishList />
         </main>
       </div>
     </WishListProvider>

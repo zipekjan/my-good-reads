@@ -8,7 +8,7 @@ type Props = {
   maxDescriptionLength?: number
 }
 
-export const BookSearchBook = ({ item, maxDescriptionLength = 400 }: Props) => {
+export const BookSearchBook = ({ item, maxDescriptionLength = 150 }: Props) => {
   const { addBook, hasBook } = useWishList()
 
   const { volumeInfo: info } = item
@@ -17,10 +17,10 @@ export const BookSearchBook = ({ item, maxDescriptionLength = 400 }: Props) => {
 
   const desc = useMemo(() => {
     const desc = info.description
-    if (desc.length > maxDescriptionLength) {
+    if (desc && desc.length > maxDescriptionLength) {
       return desc.substr(0, maxDescriptionLength - 3) + '...'
     }
-    return desc
+    return desc ?? ''
   }, [info.description, maxDescriptionLength])
 
   const handleWishlist = () => {
@@ -32,18 +32,31 @@ export const BookSearchBook = ({ item, maxDescriptionLength = 400 }: Props) => {
       <img src={info.imageLinks.thumbnail} alt="Book cover" />
     </div>
     <div className={styles.info}>
-      <div className={styles.title}>
+      <div className={styles.title} title={info.title}>
         {info.title}
       </div>
       <div className={styles.details}>
-        {hasAuthors && <div className={styles.authors}>{"Written by "}{info.authors.join(', ')}</div>}
-        {info.publisher && <div className={styles.publisher}>{hasAuthors ? "and published by " : "Published by "}{info.publisher}{" at "}{info.publishedDate}</div>}
+        {info.authors && hasAuthors && (
+          <div className={styles.authors}>
+            {`Written by ${info.authors.join(', ')}`}
+          </div>
+        )}
+        {info.publisher && (
+          <div className={styles.publisher}>
+            {hasAuthors ? "and published by " : "Published by "}
+            {info.publisher}
+            {" in "}
+            {info.publishedDate}
+          </div>
+        )}
       </div>
       <div className={styles.description}>
         {desc}
       </div>
       <div className={styles.wishlist}>
-        <button disabled={hasBook(item)} type="button" onClick={handleWishlist}>Add to wishlist</button>
+        <button disabled={hasBook(item)} type="button" onClick={handleWishlist}>
+          {hasBook(item) ? 'In your Wishlist' : 'Add to my Wishlist'}
+        </button>
       </div>
     </div>
   </div>

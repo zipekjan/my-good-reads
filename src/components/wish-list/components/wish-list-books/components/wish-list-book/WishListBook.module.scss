@@ -1,0 +1,25 @@
+@import '../../../../../../styles/variables.scss';
+
+.book {
+  padding: $spacing-3xs $spacing-xs;
+  display: flex;
+  align-items: center;
+
+  &:hover {
+    background-color: $gray10;
+  }
+
+  .name {
+    flex: 1;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+
+  .remove {
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-size: 150%;
+  }
+}

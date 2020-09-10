@@ -1,0 +1,13 @@
+@import '../../../../styles/variables.scss';
+
+.button {
+  border: none;
+  background: none;
+  color: $white;
+  margin-left: auto;
+  text-transform: uppercase;
+  font-weight: 300;
+  font-size: 100%;
+  border-bottom: 0.1rem solid $white;
+  cursor: pointer;
+}
